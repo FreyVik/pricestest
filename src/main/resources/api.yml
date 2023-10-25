@@ -1,0 +1,62 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080/prices
+tags:
+  - price
+paths:
+  /price:
+    get:
+      tags:
+        - "prices"
+      operationId: getPrice
+      parameters:
+        - in: query
+          name: appliedDate
+          required: true
+          schema:
+            type: string
+            pattern: \d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}
+        - in: query
+          name: productId
+          required: true
+          schema:
+            type: integer
+          format: int32
+          example: 35455
+        - in: query
+          name: brandId
+          required: true
+          schema:
+            type: integer
+          format: int32
+          example: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resultPriceDTO'
+components:
+  schemas:
+    resultPriceDTO:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int32
+          example: 25355
+        brandId:
+          type: integer
+          format: int32
+          example: 1
+        appliedDate:
+          type: string
+          pattern: \d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}
+        price:
+          type: number
+          format: float
+          example: 25.50
