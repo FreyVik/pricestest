@@ -1,4 +1,4 @@
-package com.gft.pricetest.domain.model.price;
+package com.gft.pricetest.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

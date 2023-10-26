@@ -1,26 +1,25 @@
-package com.gft.pricetest.application.service.price;
+package com.gft.pricetest.application.service;
 
-import com.gft.pricetest.application.model.price.AppResultPrice;
-import com.gft.pricetest.application.model.price.AppTariffRequest;
-import com.gft.pricetest.domain.model.price.Price;
-import com.gft.pricetest.domain.repository.price.PriceRepository;
+import com.gft.pricetest.application.model.ResultPrice;
+import com.gft.pricetest.application.model.AppTariffRequest;
+import com.gft.pricetest.domain.model.Price;
+import com.gft.pricetest.domain.repository.PriceRepositoryH2;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class PriceServiceImpl implements PriceService {
+public class DomainPriceService implements PriceService {
 
-    PriceRepository priceRepository;
+    PriceRepositoryH2 priceRepository;
 
-    public PriceServiceImpl(PriceRepository priceRepository) {
+    public DomainPriceService(PriceRepositoryH2 priceRepository) {
         this.priceRepository = priceRepository;
     }
 
     @Override
-    public AppResultPrice getTariffPrice(AppTariffRequest appTariffRequest) {
+    public ResultPrice getTariffPrice(AppTariffRequest appTariffRequest) {
 
         List<Price> prices = priceRepository.findByAppliedDateAndProductId(appTariffRequest.getAppliedDate(), appTariffRequest.getProductId());
 
@@ -28,7 +27,7 @@ public class PriceServiceImpl implements PriceService {
             Price selectedPrice = prices.stream()
                     .max(Comparator.comparingInt(Price::getPriority)).get();
 
-            return AppResultPrice.builder()
+            return ResultPrice.builder()
                     .productId(selectedPrice.getProductId())
                     .brandId(selectedPrice.getBrandId())
                     .appliedDate(appTariffRequest.getAppliedDate())

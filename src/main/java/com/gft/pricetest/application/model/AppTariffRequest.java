@@ -1,4 +1,4 @@
-package com.gft.pricetest.application.model.price;
+package com.gft.pricetest.application.model;
 
 import lombok.Builder;
 import lombok.Getter;

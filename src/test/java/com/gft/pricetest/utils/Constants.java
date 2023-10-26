@@ -1,8 +1,5 @@
 package com.gft.pricetest.utils;
 
-import com.gft.pricetest.application.model.price.AppResultPrice;
-import com.gft.pricetest.application.model.price.AppTariffRequest;
-
 
 public class Constants {
 

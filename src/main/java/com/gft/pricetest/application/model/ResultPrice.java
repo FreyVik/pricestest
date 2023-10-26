@@ -1,15 +1,15 @@
-package com.gft.pricetest.application.model.price;
+package com.gft.pricetest.application.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Builder
-public class AppResultPrice {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ResultPrice {
 
     private Integer productId;
 
