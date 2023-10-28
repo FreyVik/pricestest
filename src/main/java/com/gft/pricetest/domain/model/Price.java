@@ -1,6 +1,5 @@
 package com.gft.pricetest.domain.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -24,7 +23,7 @@ public class Price {
     LocalDateTime endDate;
 
     @Id
-    Integer priceList;
+    Integer priceId;
 
     Integer productId;
 

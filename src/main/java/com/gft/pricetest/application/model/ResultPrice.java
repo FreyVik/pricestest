@@ -9,11 +9,14 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class ResultPrice {
 
     private Integer productId;
 
     private Integer brandId;
+
+    private Integer priceId;
 
     private LocalDateTime appliedDate;
 

@@ -1,0 +1,93 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v1
+servers:
+  - url: http://localhost:8080/prices
+tags:
+  - name: prices
+paths:
+  /price:
+    get:
+      tags:
+        - "prices"
+      operationId: getPrice
+      parameters:
+        - $ref: '#/components/parameters/appliedDateQuery'
+        - $ref: '#/components/parameters/productIdQuery'
+        - $ref: '#/components/parameters/brandIdQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resultPriceDTO'
+        '404':
+          description: No price found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponseDTO'
+        '500':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponseDTO'
+components:
+  parameters:
+    appliedDateQuery:
+      name: appliedDate
+      in: query
+      required: true
+      schema:
+        type: string
+        example: '2023-10-26 16:00:00'
+    productIdQuery:
+      name: productId
+      in: query
+      required: true
+      schema:
+        type: integer
+      example: 35455
+    brandIdQuery:
+      name: brandId
+      in: query
+      required: true
+      schema:
+        type: integer
+      example: 1
+  schemas:
+    resultPriceDTO:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int32
+          example: 25355
+        brandId:
+          type: integer
+          format: int32
+          example: 1
+        priceId:
+          type: integer
+          format: int32
+          example: 1
+        appliedDate:
+          type: string
+          example: '2023-10-26 16:00:00'
+        price:
+          type: number
+          format: float
+          example: 25.50
+    errorResponseDTO:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+          example: 500
+        description:
+          type: string
+          example: Error description

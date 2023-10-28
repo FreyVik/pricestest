@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface PriceRepositoryH2 extends JpaRepository<Price, Integer> {
 
-    @Query("SELECT p FROM Price p WHERE p.startDate <= ?1 AND p.endDate >= ?1 AND p.productId = ?2")
-    List<Price> findByAppliedDateAndProductId(LocalDateTime localDateTime, Integer productId);
+    @Query("SELECT p FROM Price p WHERE p.startDate <= ?1 AND p.endDate >= ?1 AND p.productId = ?2 AND p.brandId = ?3")
+    List<Price> findByAppliedDateAndProductIdAndBrandId(LocalDateTime localDateTime, Integer productId, Integer brandId);
 
 }

@@ -6,7 +6,7 @@ import com.gft.pricetest.application.service.PriceService;
 import com.gft.pricetest.infrastructure.api.PricesApi;
 import com.gft.pricetest.infrastructure.mapper.ResultPriceMapper;
 import com.gft.pricetest.infrastructure.models.ResultPriceDTO;
-import com.gft.pricetest.utils.DateTimeFormatter;
+import com.gft.pricetest.utils.DateTimeFormatterUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,9 +27,9 @@ public class PriceController implements PricesApi {
     public ResponseEntity<ResultPriceDTO> getPrice(String appliedDate, Integer productId, Integer chainId) {
 
         ResultPrice resultPrice = priceService.getTariffPrice(AppTariffRequest.builder()
-                        .appliedDate(DateTimeFormatter.parseToLocalDateTime(appliedDate))
+                        .appliedDate(DateTimeFormatterUtil.parseToLocalDateTime(appliedDate))
                         .productId(productId)
-                        .chainId(chainId)
+                        .brandId(chainId)
                         .build());
 
         return new ResponseEntity<ResultPriceDTO>(resultPriceMapper.toDto(resultPrice), HttpStatus.OK);

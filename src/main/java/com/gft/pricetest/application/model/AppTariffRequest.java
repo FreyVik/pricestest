@@ -15,6 +15,6 @@ public class AppTariffRequest {
 
     Integer productId;
 
-    Integer chainId;
+    Integer brandId;
 
 }
