@@ -34,7 +34,7 @@ public class DefaultPriceService implements PriceService {
             return ResultPrice.builder()
                     .productId(selectedPrice.getProductId())
                     .brandId(selectedPrice.getBrandId())
-                    .priceId(selectedPrice.getPriceId())
+                    .tariffId(selectedPrice.getPriceId())
                     .appliedDate(appTariffRequest.getAppliedDate())
                     .price(selectedPrice.getPrice())
                     .build();

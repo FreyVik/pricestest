@@ -29,7 +29,7 @@ class DefaultPriceServiceTest {
     private ResultPrice expectedResultPrice = ResultPrice.builder()
             .productId(SECOND_TARIFF_PRICE.getProductId())
             .brandId(SECOND_TARIFF_PRICE.getBrandId())
-            .priceId(2)
+            .tariffId(2)
             .appliedDate(SIMPLE_LOCAL_DATE_TIME)
             .price(SECOND_TARIFF_PRICE.getPrice())
             .build();

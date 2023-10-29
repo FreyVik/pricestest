@@ -70,7 +70,7 @@ components:
           type: integer
           format: int32
           example: 1
-        priceId:
+        tariffId:
           type: integer
           format: int32
           example: 1

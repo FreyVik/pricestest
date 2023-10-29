@@ -16,7 +16,7 @@ public class ResultPrice {
 
     private Integer brandId;
 
-    private Integer priceId;
+    private Integer tariffId;
 
     private LocalDateTime appliedDate;
 
