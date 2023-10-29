@@ -1,0 +1,651 @@
+{
+	"info": {
+		"_postman_id": "fb5a2770-65ba-478e-bc04-3ed37a51349d",
+		"name": "Prices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13521003"
+	},
+	"item": [
+		{
+			"name": "Error control",
+			"item": [
+				{
+					"name": "No parameter",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-14 18:30:01&productId=35455",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-14 18:30:01"
+								},
+								{
+									"key": "productId",
+									"value": "35455"
+								},
+								{
+									"key": "brandId",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parameter type",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-14 18:30:01&productId=35455&brandId=string",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-14 18:30:01"
+								},
+								{
+									"key": "productId",
+									"value": "35455"
+								},
+								{
+									"key": "brandId",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tariff price not found",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-14 18:30:01&productId=3000&brandId=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-14 18:30:01"
+								},
+								{
+									"key": "productId",
+									"value": "3000"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tests",
+			"item": [
+				{
+					"name": "Test 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tariff price is 35.5\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.price).to.eql(35.5);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-14 10:00:00&productId=35455&brandId=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-14 10:00:00"
+								},
+								{
+									"key": "productId",
+									"value": "35455"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tariff price is 25.45\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.price).to.eql(25.45);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-14 16:00:00&productId=35455&brandId=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-14 16:00:00"
+								},
+								{
+									"key": "productId",
+									"value": "35455"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tariff price is 35.5\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.price).to.eql(35.5);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-14 21:00:00&productId=35455&brandId=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-14 21:00:00"
+								},
+								{
+									"key": "productId",
+									"value": "35455"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tariff price is 30.5\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.price).to.eql(30.5);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-15 10:00:00&productId=35455&brandId=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-15 10:00:00"
+								},
+								{
+									"key": "productId",
+									"value": "35455"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tariff price is 38.95\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.price).to.eql(38.95);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-16 21:00:00&productId=35455&brandId=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-16 21:00:00"
+								},
+								{
+									"key": "productId",
+									"value": "35455"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test - Bad Request parameter not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tariff price is 38.95\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.code).to.eql(400)\r",
+									"    pm.expect(responseJson.description).to.eql('Parameter [brandId] not found');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-16 21:00:00&productId=35455&brandId=",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-16 21:00:00"
+								},
+								{
+									"key": "productId",
+									"value": "35455"
+								},
+								{
+									"key": "brandId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test - Bad Request parameter format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tariff price is 38.95\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.code).to.eql(400)\r",
+									"    pm.expect(responseJson.description).to.eql('Parameter [productId] is not java.lang.Integer');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=2020-06-16 21:00:00&productId=string&brandId=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "2020-06-16 21:00:00"
+								},
+								{
+									"key": "productId",
+									"value": "string"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test - Bad Request date format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tariff price is 38.95\", () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.code).to.eql(400)\r",
+									"    pm.expect(responseJson.description).to.eql('\\'16-06-2020 21:00:00\\' doesn\\'t comply with date format yyyy-MM-dd HH:mm:ss');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/price?appliedDate=16-06-2020 21:00:00&productId=35455&brandId=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"price"
+							],
+							"query": [
+								{
+									"key": "appliedDate",
+									"value": "16-06-2020 21:00:00"
+								},
+								{
+									"key": "productId",
+									"value": "35455"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get basic tariff price",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{host}}/price?appliedDate=2020-06-14 18:30:01&productId=35455&brandId=1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"price"
+					],
+					"query": [
+						{
+							"key": "appliedDate",
+							"value": "2020-06-14 18:30:01"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:9000",
+			"type": "string"
+		}
+	]
+}

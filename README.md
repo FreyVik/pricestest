@@ -1,59 +1,53 @@
 # Prices service
 
-This is a little project that consult a database to get the price of a specific product on a determinate day and hour.
-It's implemented on a H2 database that works on memory, follows ApiFirst requirements and have swagger-ui documentation and is tested with JUnit and Mockito for unitary tests, and you can use a postman collection for e2e tests.
+This is a small project designed to query a database for the price of a specific product at a particular date and time. The service is implemented using an in-memory H2 database, adheres to ApiFirst requirements, and includes Swagger-UI documentation. It is also thoroughly tested using JUnit and Mockito for unit tests. Additionally, an accompanying Postman collection is provided for end-to-end testing.
 
 ## Run application
 
-The project use maven and java 17, so the first thing you must do is be sure that your `%JAVA_HOME%` is a java 17 version or your that your maven used java is that version. Then you have run the command `mvn clean install` or `mvn clean install -DskipTests` if you want skip the tests. You can use the IDE usages of the similar configuration.
+To run the application, ensure that your system is equipped with Java 17. Confirm that your `%JAVA_HOME%` is set to Java 17 or that your Maven installation is configured to use this version. Then, execute the command `mvn clean install` or `mvn clean install -DskipTests` if you wish to skip tests. Alternatively, you can utilize your IDE's configurations for a similar setup.
 
-The project is using ApiFirst requirements, so it are using the file [price-api.yml](src%2Fmain%2Fresources%2Fprice-api.yml) as specification of the API and is using codegen plugin for create an API controller interface that are declarated on the file specification as well the request and responses DTOs, so don't scare if you see errors before run maven installation.
+This project follows ApiFirst requirements, using the [price-api.yml](src%2Fmain%2Fresources%2Fprice-api.yml) file as the API specification. It leverages a code generation plugin to create an API controller interface, along with the request and response DTOs, which are declared in the specification file. Don't be alarmed if you encounter errors before running the Maven installation; this is part of the process.
 
-And for last step, you can run the application, there are so many ways to do it, but principally you have to run [PriceTestApplication](src%2Fmain%2Fjava%2Fcom%2Fgft%2Fpricetest%2FPriceTestApplication) file with java or execute the command `java -jar pricetest-0.0.1-SNAPSHOT.jar` that you can find here [pricetest-0.0.1-SNAPSHOT.jar](target%2Fpricetest-0.0.1-SNAPSHOT.jar).
-Other common way to run the application is using the command `mvn spring-boot:run` or your IDE usages for springboot.
+Finally, you can start the application in various ways. Principally, run the [PriceTestApplication](src%2Fmain%2Fjava%2Fcom%2Fgft%2Fpricetest%2FPriceTestApplication) file using Java or execute the command `java -jar pricetest-0.0.1-SNAPSHOT.jar` which can be found here: [pricetest-0.0.1-SNAPSHOT.jar](target%2Fpricetest-0.0.1-SNAPSHOT.jar). Another common method is to use the command mvn spring-boot:run or your IDE's spring boot support.
 
 ## Testing
 
 ### Unitary tests
-The project have unitary tests, so you can run the test that you can find under [test](src%2Ftest) folder, or running the before commented command `mvn clean install` and it runs tests automatically.
+
+This project includes a suite of unit tests. You can run these tests by executing the command `mvn clean install` or by running the tests individually, which are located in the [test](src%2Ftest) folder.
 
 ### E2e tests
 
-For e2e testing, you can use the postman collection json file that you can find here [Prices.postman_collection.json](..%2FDOCS%2Fimg%2FPrices.postman_collection.json) you have to import it and use the running tests you can fine under the folder `Tests` and run them on the `run` bottom that you can find on the right top corner and click on the `Run Prices` bottom of the next window
+For end-to-end testing, you can employ the Postman collection provided in the  [Prices.postman_collection.json](..%2FDOCS%2Fimg%2FPrices.postman_collection.json) file. Import this collection into Postman, where you'll find prepared tests in the "Tests" folder. Execute these tests by clicking the "Run Prices" button in the top right corner.
 
-![Postman_tests.png](..%2FDOCS%2Fimg%2FPostman_tests.png)
+![Postman_tests.png](DOCS%2Fimg%2FPostman_tests.png)
 
-![Postman_runTests.png](..%2FDOCS%2Fimg%2FPostman_runTests.png)
+![Postman_runTests.png](DOCS%2Fimg%2FPostman_runTests.png)
 
-And you should have a result like this
+You should receive results like this:
 
-![Postman_testsResults.png](..%2FDOCS%2Fimg%2FPostman_testsResults.png)
+![Postman_testsResults.png](DOCS%2Fimg%2FPostman_testsResults.png)
 
-I have created more tests for error control that check 3 cases, a missing parameter, bad parameter type and a bad date format
+Additional tests have been created to handle error scenarios, covering cases such as missing parameters, invalid parameter types, and improper date formats.
 
 ## Postman
 
-One way to try the Api, you can import the [Prices.postman_collection.json](..%2FDOCS%2FPrices.postman_collection.json) file. You will find 2 folder and 1 get request. `Error control` folder have a prepared request for check controlled errors. `Tests` folder is for e2e testing. And `Get basic traffic price` is the basic request for try the API.
+To explore the API, import the [Prices.postman_collection.json](..%2FDOCS%2FPrices.postman_collection.json) file. Within this collection, you'll find two folders: "Error Control" contains requests designed to test controlled errors, while "Tests" is for end-to-end testing. The "Get basic traffic price" request is your entry point for trying out the API.
 
+## Error Handling
 
-## Error control
+For error handling, the project includes the class [MainExceptionHandler](src%2Fmain%2Fjava%2Fcom%2Fgft%2Fpricetest%2Fexceptions%2Fhandler%2FMainExceptionHandler), which acts as a ControllerAdvice to manage exceptions and generate appropriate responses.
 
-For the error control, the project have the class [MainExceptionHandler](src%2Fmain%2Fjava%2Fcom%2Fgft%2Fpricetest%2Fexceptions%2Fhandler%2FMainExceptionHandler) that is a ControllerAdvice to handle the exceptions to generate the responses for specific exception.
+Additionally, there's an example of a custom exception class, [NotFoundTariffPriceException](src%2Fmain%2Fjava%2Fcom%2Fgft%2Fpricetest%2Fexceptions%2Fexception%2FNotFoundTariffPriceException), which includes access to the [MainExceptionHandler](src%2Fmain%2Fjava%2Fcom%2Fgft%2Fpricetest%2Fexceptions%2Fhandler%2FMainExceptionHandler)
 
-On the other hand, we have an example of custom exception class [NotFoundTariffPriceException](src%2Fmain%2Fjava%2Fcom%2Fgft%2Fpricetest%2Fexceptions%2Fexception%2FNotFoundTariffPriceException) that is created for throws an error when the query returns a empty *List* of *Prices* and is handled by [MainExceptionHandler](src%2Fmain%2Fjava%2Fcom%2Fgft%2Fpricetest%2Fexceptions%2Fhandler%2FMainExceptionHandler)
+## Swagger Documentation
 
-## Swagger
-
-The project have a swagger-ui and you can use it as documentation or to try the API.
-
-Once you have the service started, you can access to swagger by [Swagger](http://localhost:9000/swagger-ui/index.html) and you have access to the [API doc](http://localhost:9000/v3/api-docs).
+The project provides Swagger-UI for documentation and API testing. Once the service is up and running, you can access the Swagger documentation at [Swagger](http://localhost:9000/swagger-ui/index.html) and you have access to the [API doc](http://localhost:9000/v3/api-docs).
 
 ## H2 database
 
-The project run automatically the database, if you want to access, you must enter the link [H2 database link](http://localhost:9000/h2-console) and have the JDBC URL as `jdbc:h2:mem:E_COMMERCE`. The credentials to login are `User name: admin` `Password: admin`.
+The project automatically runs an H2 database. To access it, use the link [H2 database link](http://localhost:9000/h2-console) and set the JDBC URL to `jdbc:h2:mem:E_COMMERCE`. The login credentials are as follows: `User name: admin` and `Password: admin`.
+![h2_login.png](DOCS%2Fimg%2Fh2_login.png)
 
-![h2_login.png](..%2FDOCS%2Fimg%2Fh2_login.png)
-
-Obviously, admin-admin as user and password is only for the test and furthermore, I like to configure it as Enviroment variables calling them on [application.yml](src%2Fmain%2Fresources%2Fapplication.yml) as `${H2_USER}` and `${H2_PASS}` but this complicate the project for try it.
-Once inside you can use the console to execute queries, but when you stop the project you will lose all changes.
+Please note that using "admin" as both the username and password is for testing purposes. Ideally, you should configure these credentials as environment variables and reference them in [application.yml](src%2Fmain%2Fresources%2Fapplication.yml). However, this complexity is unnecessary for trying out the project, as it's configured to work out of the box. Keep in mind that any changes you make within the H2 database will be lost when the project is stopped.
 
