@@ -1,10 +1,10 @@
-package com.gft.pricetest.infrastructure.controller;
+package com.gft.pricetest.infrastructure.rest.controller;
 
 import com.gft.pricetest.application.model.ResultPrice;
 import com.gft.pricetest.application.model.AppTariffRequest;
-import com.gft.pricetest.application.service.PriceService;
+import com.gft.pricetest.domain.usecase.PriceService;
 import com.gft.pricetest.infrastructure.api.PricesApi;
-import com.gft.pricetest.infrastructure.mapper.ResultPriceMapper;
+import com.gft.pricetest.infrastructure.adapter.mapper.ResultPriceMapper;
 import com.gft.pricetest.infrastructure.models.ResultPriceDTO;
 import com.gft.pricetest.utils.DateTimeFormatterUtil;
 import org.springframework.http.HttpStatus;

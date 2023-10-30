@@ -1,20 +1,17 @@
-package com.gft.pricetest.exceptions.handler;
+package com.gft.pricetest.infrastructure.rest.advice;
 
 import com.gft.pricetest.application.model.AppTariffRequest;
-import com.gft.pricetest.exceptions.exception.NotFoundTariffPriceException;
+import com.gft.pricetest.infrastructure.adapter.exception.NotFoundTariffPriceException;
 import com.gft.pricetest.infrastructure.models.ErrorResponseDTO;
 import com.gft.pricetest.utils.DateTimeFormatterUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.time.format.DateTimeParseException;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.gft.pricetest.utils.DateTimeFormatterUtil.DATE_TIME_FORMAT;
 

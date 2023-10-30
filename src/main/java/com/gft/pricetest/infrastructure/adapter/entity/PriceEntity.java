@@ -1,6 +1,8 @@
-package com.gft.pricetest.domain.model;
+package com.gft.pricetest.infrastructure.adapter.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,7 +12,9 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Price {
+@Entity
+@Table(name = "PRICES")
+public class PriceEntity {
 
     Integer brandId;
 
@@ -18,6 +22,7 @@ public class Price {
 
     LocalDateTime endDate;
 
+    @Id
     Integer priceId;
 
     Integer productId;
@@ -27,5 +32,4 @@ public class Price {
     Float price;
 
     String curr;
-
 }

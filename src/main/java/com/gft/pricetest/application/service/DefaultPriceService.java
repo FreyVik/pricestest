@@ -3,8 +3,11 @@ package com.gft.pricetest.application.service;
 import com.gft.pricetest.application.model.ResultPrice;
 import com.gft.pricetest.application.model.AppTariffRequest;
 import com.gft.pricetest.domain.model.Price;
-import com.gft.pricetest.domain.repository.PriceRepositoryH2;
-import com.gft.pricetest.exceptions.exception.NotFoundTariffPriceException;
+import com.gft.pricetest.domain.port.PricePersistencePort;
+import com.gft.pricetest.infrastructure.adapter.entity.PriceEntity;
+import com.gft.pricetest.domain.usecase.PriceService;
+import com.gft.pricetest.infrastructure.adapter.repository.PriceRepositoryH2;
+import com.gft.pricetest.infrastructure.adapter.exception.NotFoundTariffPriceException;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -13,30 +16,30 @@ import java.util.List;
 @Service
 public class DefaultPriceService implements PriceService {
 
-    PriceRepositoryH2 priceRepository;
+    PricePersistencePort pricePersistencePort;
 
-    public DefaultPriceService(PriceRepositoryH2 priceRepository) {
-        this.priceRepository = priceRepository;
+    public DefaultPriceService(PricePersistencePort pricePersistencePort) {
+        this.pricePersistencePort = pricePersistencePort;
     }
 
     @Override
     public ResultPrice getTariffPrice(AppTariffRequest appTariffRequest) {
 
-        List<Price> prices = priceRepository.findByAppliedDateAndProductIdAndBrandId(
+        List<Price> priceList = pricePersistencePort.findByAppliedDateAndProductIdAndBrandId(
                 appTariffRequest.getAppliedDate(),
                 appTariffRequest.getProductId(),
                 appTariffRequest.getBrandId());
 
-        if (!prices.isEmpty()) {
-            Price selectedPrice = prices.stream()
+        if (!priceList.isEmpty()) {
+            Price selectedPriceEntity = priceList.stream()
                     .max(Comparator.comparingInt(Price::getPriority)).get();
 
             return ResultPrice.builder()
-                    .productId(selectedPrice.getProductId())
-                    .brandId(selectedPrice.getBrandId())
-                    .tariffId(selectedPrice.getPriceId())
+                    .productId(selectedPriceEntity.getProductId())
+                    .brandId(selectedPriceEntity.getBrandId())
+                    .tariffId(selectedPriceEntity.getPriceId())
                     .appliedDate(appTariffRequest.getAppliedDate())
-                    .price(selectedPrice.getPrice())
+                    .price(selectedPriceEntity.getPrice())
                     .build();
 
         } else {

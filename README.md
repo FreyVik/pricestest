@@ -30,6 +30,10 @@ You should receive results like this:
 
 Additional tests have been created to handle error scenarios, covering cases such as missing parameters, invalid parameter types, and improper date formats.
 
+### Integration testing
+
+Finally, the projects have integration testing that you can find on [IntegrationTest.java](src%2Ftest%2Fjava%2Fcom%2Fgft%2Fpricetest%2Finfrastructure%2Fcontroller%2FIntegrationTest.java) file. These tests check the same casuistry as the e2e tests.
+
 ## Postman
 
 To explore the API, import the [Prices.postman_collection.json](..%2FDOCS%2FPrices.postman_collection.json) file. Within this collection, you'll find two folders: "Error Control" contains requests designed to test controlled errors, while "Tests" is for end-to-end testing. The "Get basic traffic price" request is your entry point for trying out the API.
@@ -50,4 +54,15 @@ The project automatically runs an H2 database. To access it, use the link [H2 da
 ![h2_login.png](DOCS%2Fimg%2Fh2_login.png)
 
 Please note that using "admin" as both the username and password is for testing purposes. Ideally, you should configure these credentials as environment variables and reference them in [application.yml](src%2Fmain%2Fresources%2Fapplication.yml). However, this complexity is unnecessary for trying out the project, as it's configured to work out of the box. Keep in mind that any changes you make within the H2 database will be lost when the project is stopped.
+
+## Docker
+
+I integrate this service with docker too, if you want to deploy it, you can follow this steps
+1. Run `mvn clean install` to generate the .jar file [pricetest-0.0.1-SNAPSHOT.jar](target%2Fpricetest-0.0.1-SNAPSHOT.jar)
+2. Open your terminal on root project where is the [Dockerfile](Dockerfile).
+3. Run `docker build -t "priceEntities-docker" .`.
+4. Finally run `docker run --name priceEntities-service -p 9000:9000 priceEntities-docker:latest`
+
+Now your service is running on localhost:9000. If you want to change expose docker port, you must change the value of **EXPOSE** in [Dockerfile](Dockerfile) and refactor de last command with `docker run --name priceEntities-service -p {newExposePort}:9000 priceEntities-docker:latest`.
+You can change internal port too if you want, you have to change property `server.port` in [application.yml](src%2Fmain%2Fresources%2Fapplication.yml) and change last command with `docker run --name priceEntities-service -p 9000:{newInternalPort} priceEntities-docker:latest`
 
