@@ -64,7 +64,7 @@ public class Constants {
             .curr("EUR")
             .build();
 
-    public static final List<Price> SIMPLE_PRICE_LIST = List.of(FIST_TARIFF_PRICE, SECOND_TARIFF_PRICE);
+    public static final List<Price> SIMPLE_PRICE_LIST_ENTITY = List.of(FIST_TARIFF_PRICE, SECOND_TARIFF_PRICE);
 
     public static final List<Price> SIMPLE_PRICE_LIST_OF_1 = List.of(SECOND_TARIFF_PRICE);
 

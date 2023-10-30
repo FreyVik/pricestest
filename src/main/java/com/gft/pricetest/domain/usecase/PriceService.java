@@ -1,4 +1,4 @@
-package com.gft.pricetest.application.service;
+package com.gft.pricetest.domain.usecase;
 
 import com.gft.pricetest.application.model.ResultPrice;
 import com.gft.pricetest.application.model.AppTariffRequest;

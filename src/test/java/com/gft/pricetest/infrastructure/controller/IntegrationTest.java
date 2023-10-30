@@ -103,6 +103,15 @@ public class IntegrationTest {
                     .andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
                     .andExpect(jsonPath("$.description").value("'16-06-2020 21:00:00' doesn't comply with date format yyyy-MM-dd HH:mm:ss"));
         }
+
+        @Test
+        @DisplayName("Test - No Price found")
+        public void shouldReturnNotFoundError() throws Exception {
+            mockMvc.perform(MockMvcRequestBuilders.get("/price?appliedDate=2020-06-14 18:30:01&productId=3000&brandId=1")
+                            .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().is(HttpStatus.NOT_FOUND.value()))
+                    .andExpect(jsonPath("$.description").value("Price for product 3000 not found at 2020-06-14 18:30:01"));
+        }
     }
 }
 

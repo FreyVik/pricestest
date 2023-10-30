@@ -1,4 +1,4 @@
-package com.gft.pricetest.exceptions.exception;
+package com.gft.pricetest.infrastructure.adapter.exception;
 
 import com.gft.pricetest.application.model.AppTariffRequest;
 import lombok.Getter;

@@ -1,7 +1,8 @@
 package com.gft.pricetest.infrastructure.controller;
 
-import com.gft.pricetest.application.service.PriceService;
-import com.gft.pricetest.infrastructure.mapper.ResultPriceMapper;
+import com.gft.pricetest.domain.usecase.PriceService;
+import com.gft.pricetest.infrastructure.adapter.mapper.ResultPriceMapper;
+import com.gft.pricetest.infrastructure.rest.controller.PriceController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
