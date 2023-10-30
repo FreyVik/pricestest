@@ -30,6 +30,10 @@ You should receive results like this:
 
 Additional tests have been created to handle error scenarios, covering cases such as missing parameters, invalid parameter types, and improper date formats.
 
+### Integration testing
+
+Finally, the projects have integration testing that you can find on [IntegrationTest.java](src%2Ftest%2Fjava%2Fcom%2Fgft%2Fpricetest%2Finfrastructure%2Fcontroller%2FIntegrationTest.java) file. These tests check the same casuistry as the e2e tests.
+
 ## Postman
 
 To explore the API, import the [Prices.postman_collection.json](..%2FDOCS%2FPrices.postman_collection.json) file. Within this collection, you'll find two folders: "Error Control" contains requests designed to test controlled errors, while "Tests" is for end-to-end testing. The "Get basic traffic price" request is your entry point for trying out the API.
