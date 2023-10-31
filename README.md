@@ -60,9 +60,9 @@ Please note that using "admin" as both the username and password is for testing 
 I integrate this service with docker too, if you want to deploy it, you can follow this steps
 1. Run `mvn clean install` to generate the .jar file [pricetest-0.0.1-SNAPSHOT.jar](target%2Fpricetest-0.0.1-SNAPSHOT.jar)
 2. Open your terminal on root project where is the [Dockerfile](Dockerfile).
-3. Run `docker build -t "priceEntities-docker" .`.
-4. Finally run `docker run --name priceEntities-service -p 9000:9000 priceEntities-docker:latest`
+3. Run `docker build -t "prices-docker" .`.
+4. Finally run `docker run --name prices-service -p 9000:9000 prices-docker:latest`
 
-Now your service is running on localhost:9000. If you want to change expose docker port, you must change the value of **EXPOSE** in [Dockerfile](Dockerfile) and refactor de last command with `docker run --name priceEntities-service -p {newExposePort}:9000 priceEntities-docker:latest`.
-You can change internal port too if you want, you have to change property `server.port` in [application.yml](src%2Fmain%2Fresources%2Fapplication.yml) and change last command with `docker run --name priceEntities-service -p 9000:{newInternalPort} priceEntities-docker:latest`
+Now your service is running on localhost:9000. If you want to change expose docker port, you must change the value of **EXPOSE** in [Dockerfile](Dockerfile) and refactor de last command with `docker run --name prices-service -p {newExposePort}:9000 prices-docker:latest`.
+You can change internal port too if you want, you have to change property `server.port` in [application.yml](src%2Fmain%2Fresources%2Fapplication.yml) and change last command with `docker run --name prices-service -p 9000:{newInternalPort} prices-docker:latest`
 
