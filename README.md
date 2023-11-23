@@ -51,6 +51,7 @@ The project provides Swagger-UI for documentation and API testing. Once the serv
 ## H2 database
 
 The project automatically runs an H2 database. To access it, use the link [H2 database link](http://localhost:9000/h2-console) and set the JDBC URL to `jdbc:h2:mem:E_COMMERCE`. The login credentials are as follows: `User name: admin` and `Password: admin`.
+
 ![h2_login.png](DOCS%2Fimg%2Fh2_login.png)
 
 Please note that using "admin" as both the username and password is for testing purposes. Ideally, you should configure these credentials as environment variables and reference them in [application.yml](src%2Fmain%2Fresources%2Fapplication.yml). However, this complexity is unnecessary for trying out the project, as it's configured to work out of the box. Keep in mind that any changes you make within the H2 database will be lost when the project is stopped.
